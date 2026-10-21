@@ -1,0 +1,26 @@
+' S04 Q6 : le point de départ de votre diagramme. Copiez-le dans PlantUML Studio
+' (https://blog.mathieuacher.com/plantuml-studio/), complétez-le en suivant le
+' sujet, puis recollez ici le texte complet, et posez l'image à côté (s04-lecteur.svg).
+@startuml
+title Mon lecteur de parties
+
+class LecteurDeParties {
+  +resume() : String
+}
+class Scenario <<record>> {
+  +parcourir(v : VisiteurDeScenario)
+}
+interface Instruction {
+  +accept(v : VisiteurDeScenario)
+}
+class Pousser <<record>> {
+  equipe : Couleur
+  de : Position
+  vers : Position
+  +enCoup() : Coup
+}
+
+LecteurDeParties --> Scenario : fichier
+Scenario o-- "*" Instruction
+Instruction <|.. Pousser
+@enduml

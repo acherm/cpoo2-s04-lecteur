@@ -1,0 +1,51 @@
+# Une partie d'entraînement, du coup d'envoi au but. Deux IA de la séance 3
+# s'affrontent : la gloutonne, avec une part de hasard de chaque côté.
+[Événement "Entraînement"]
+[Date "2026-10-07"]
+[Bleus "IA gloutonne"]
+[Rouges "IA gloutonne"]
+[Règles "officielles"]
+[Résultat "bleus"]
+
+départ officiel
+bleus déplacement e5-e4
+rouges déplacement c2-c3
+bleus poussée c5-d4
+rouges déplacement c3-c4
+bleus poussée d4-e3
+rouges poussée f1-f2
+bleus déplacement e4-f4
+rouges saut e2-e4
+bleus déplacement b6-b5
+rouges déplacement c4-c5
+bleus déplacement d6-d5
+rouges déplacement c5-c6
+bleus déplacement f6-f5
+rouges saut e4-g2
+bleus déplacement f5-g5
+rouges poussée g2-f3
+bleus déplacement d5-e5
+rouges tacle f2-e3
+bleus déplacement b5-b6
+rouges déplacement c6-b5
+bleus saut d4-f6
+rouges déplacement b1-c1
+bleus tacle b6-b5
+rouges déplacement d1-e2
+bleus saut f4-d4
+rouges poussée f3-e4
+bleus déplacement e5-d6
+rouges déplacement b4-b3
+bleus déplacement d6-e6
+rouges déplacement e4-f3
+bleus saut d4-f2
+rouges déplacement e3-d4
+bleus déplacement g5-g6
+rouges tacle e2-f2
+bleus poussée e6-d5
+rouges déplacement b3-a4
+bleus poussée b5-c4
+rouges déplacement c1-d2
+bleus poussée c4-d3
+rouges déplacement a4-a3
+bleus poussée d3-e2

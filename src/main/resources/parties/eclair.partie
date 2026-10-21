@@ -1,0 +1,53 @@
+# Une partie de tournoi éclair : nulle après 40 demi-coups sans poussée.
+[Événement "Tournoi éclair"]
+[Date "2026-10-06"]
+[Bleus "IA gloutonne"]
+[Rouges "IA gloutonne"]
+[Nulle "40"]
+[Résultat "nulle"]
+
+départ officiel
+bleus poussée c5-d4
+rouges déplacement b1-c1
+bleus déplacement f6-g6
+rouges poussée e2-e3
+bleus déplacement g6-f6
+rouges déplacement c2-d3
+bleus saut e5-c3
+rouges déplacement e3-d2
+bleus déplacement d6-e6
+rouges déplacement f1-g1
+bleus déplacement d4-e5
+rouges déplacement d2-e1
+bleus déplacement f6-g5
+rouges déplacement c1-b1
+bleus déplacement g5-f5
+rouges déplacement g1-f2
+bleus déplacement e6-d6
+rouges déplacement d1-e2
+bleus déplacement c3-b4
+rouges déplacement d3-e3
+bleus déplacement b6-c6
+rouges saut e3-g1
+bleus déplacement f5-g5
+rouges déplacement g1-f1
+bleus déplacement g5-g6
+rouges déplacement f2-f3
+bleus déplacement e5-f6
+rouges déplacement e2-e3
+bleus déplacement b4-a4
+rouges déplacement f3-g3
+bleus déplacement d6-e5
+rouges déplacement e3-f2
+bleus déplacement e5-d5
+rouges déplacement b1-c2
+bleus déplacement a4-b4
+rouges déplacement f2-f3
+bleus déplacement d5-e5
+rouges déplacement c2-d2
+bleus déplacement c6-c5
+rouges déplacement f3-e2
+bleus déplacement b4-b5
+rouges déplacement e2-d1
+bleus déplacement e5-d4
+rouges déplacement f1-e2

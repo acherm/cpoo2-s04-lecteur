@@ -1,0 +1,50 @@
+# Une partie jouée au club voisin, qui ne connaît pas la règle des représailles :
+# juste après un tacle, la victime peut tacler son tacleur, ou sauter par-dessus lui.
+[Événement "Rencontre amicale"]
+[Date "2026-10-03"]
+[Bleus "IA gloutonne"]
+[Rouges "IA gloutonne"]
+[Représailles "permises"]
+[Résultat "rouges"]
+
+départ officiel
+bleus poussée c5-d4
+rouges poussée e2-e3
+bleus déplacement b6-b5
+rouges déplacement e3-e2
+bleus poussée e5-e4
+rouges déplacement c2-c3
+bleus déplacement e4-f3
+rouges poussée e2-e3
+bleus déplacement f3-e2
+rouges déplacement d1-d2
+bleus déplacement d6-e5
+rouges saut c3-e1
+bleus déplacement f6-f5
+rouges déplacement d2-d1
+bleus poussée f5-e4
+rouges déplacement f1-g1
+bleus déplacement d4-c3
+rouges déplacement d1-c2
+bleus déplacement c3-b4
+rouges déplacement e3-d2
+bleus déplacement e5-d4
+rouges déplacement c2-c3
+bleus déplacement e2-d1
+rouges déplacement c3-c4
+bleus déplacement d4-c3
+rouges poussée d2-d3
+bleus déplacement b5-c6
+rouges déplacement b1-a2
+bleus déplacement c6-d5
+rouges tacle c4-c3
+bleus tacle c2-c3
+rouges déplacement d3-e3
+bleus déplacement d5-e6
+rouges poussée e3-d4
+bleus déplacement e6-d6
+rouges saut d4-b2
+bleus déplacement d6-e5
+rouges déplacement b2-a3
+bleus déplacement d1-e2
+rouges poussée c4-c5

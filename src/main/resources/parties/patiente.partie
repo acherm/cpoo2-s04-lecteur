@@ -1,0 +1,60 @@
+# Une partie aux règles de la boîte, où l'on a longtemps manœuvré sans toucher au ballon.
+[Événement "Entraînement"]
+[Date "2026-10-05"]
+[Bleus "IA gloutonne"]
+[Rouges "IA gloutonne"]
+[Règles "officielles"]
+[Résultat "bleus"]
+
+départ officiel
+bleus poussée c5-d4
+rouges déplacement c2-c3
+bleus poussée d4-e3
+rouges poussée f1-f2
+bleus déplacement e3-d3
+rouges déplacement f2-f1
+bleus déplacement d3-c4
+rouges déplacement c3-b4
+bleus déplacement f6-g6
+rouges déplacement f1-g1
+bleus déplacement g6-f6
+rouges déplacement g1-g2
+bleus déplacement f6-g5
+rouges déplacement d1-c1
+bleus déplacement d6-c6
+rouges déplacement e2-d1
+bleus saut c4-a4
+rouges déplacement g2-g3
+bleus déplacement b6-a6
+rouges déplacement b4-c4
+bleus déplacement e5-d4
+rouges déplacement c1-b2
+bleus déplacement a4-b3
+rouges déplacement d1-e2
+bleus déplacement d4-d5
+rouges déplacement b1-a2
+bleus déplacement d5-e6
+rouges tacle b2-b3
+bleus déplacement b4-b5
+rouges déplacement b3-c3
+bleus déplacement g5-f5
+rouges déplacement c4-d3
+bleus déplacement e6-e5
+rouges saut d3-f1
+bleus déplacement b5-c4
+rouges déplacement f1-f2
+bleus déplacement a6-b5
+rouges déplacement c3-d3
+bleus déplacement f5-g4
+rouges déplacement e2-d2
+bleus déplacement c4-d5
+rouges déplacement g3-g2
+bleus déplacement b5-b6
+rouges déplacement d3-c4
+bleus déplacement e5-e6
+rouges déplacement a2-b2
+bleus déplacement d5-d4
+rouges déplacement f2-g3
+bleus poussée g4-f3
+rouges tacle c4-d4
+bleus poussée f3-e2

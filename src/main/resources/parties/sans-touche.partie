@@ -1,0 +1,50 @@
+# Une variante de plage : sans zones de touche, le ballon peut longer les bords.
+[Événement "Tournoi de plage"]
+[Date "2026-10-04"]
+[Bleus "IA gloutonne"]
+[Rouges "IA gloutonne"]
+[Touche "sans"]
+[Résultat "bleus"]
+
+départ officiel
+bleus poussée c5-d4
+rouges déplacement d1-c1
+bleus poussée d4-e3
+rouges poussée e2-f2
+bleus déplacement e5-f4
+rouges déplacement f2-g1
+bleus déplacement f4-g3
+rouges déplacement f1-e2
+bleus déplacement b6-b5
+rouges déplacement c2-c3
+bleus déplacement d6-d5
+rouges déplacement c3-d2
+bleus déplacement g3-g4
+rouges poussée g1-g2
+bleus déplacement d5-e6
+rouges déplacement d2-d3
+bleus déplacement e6-e5
+rouges déplacement d3-d4
+bleus déplacement f6-f5
+rouges déplacement d4-d5
+bleus déplacement e3-d3
+rouges déplacement d5-d6
+bleus déplacement b5-b6
+rouges déplacement d6-d5
+bleus déplacement g4-f4
+rouges déplacement e2-d1
+bleus déplacement f5-g4
+rouges déplacement d5-d6
+bleus déplacement b6-b5
+rouges déplacement d6-d5
+bleus déplacement b5-b6
+rouges déplacement d5-d6
+bleus déplacement g4-f5
+rouges saut g2-g4
+bleus déplacement b6-b5
+rouges poussée g4-g3
+bleus déplacement b5-b6
+rouges déplacement g3-f3
+bleus déplacement f4-g3
+rouges déplacement f3-f2
+bleus poussée g3-g2
