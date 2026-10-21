@@ -53,15 +53,20 @@ public final class Executeur implements VisiteurDeScenario {
     @Override public void visiterVerifier(Verifier v) { throw new UnsupportedOperationException("TODO S04 Q1"); }
 
     /**
-     * Fait jouer le coup par la partie : c'est partie.jouer(coup) qui le joue, la Partie connaît les
-     * règles. Le travail commun aux quatre coups, pas une sixième méthode visiter : elle ne regarde
-     * jamais la sorte de la ligne, et ne la reçoit que pour l'écrire dans le message d'échec.
+     * Fait jouer le coup par la partie : c'est l'appel partie.jouer(coup) qui joue le coup, la Partie
+     * connaît les règles. Le travail commun aux quatre coups, pas une sixième méthode visiter : elle
+     * ne regarde jamais la sorte de la ligne, et ne la reçoit que pour le message d'échec.
      *
-     * <p>TODO S04 Q1 : compter la ligne (numero++). Puis, avant de jouer, vérifier l'équipe : un Coup
-     * n'a pas de couleur, la partie le joue pour l'équipe au trait. Si la ligne annonce l'autre
-     * équipe, ne pas jouer, et l'échec « ce n'est pas aux bleus de jouer » (Scenario.nom(equipe)
-     * donne « bleus » ou « rouges »). Sinon, jouer : partie.jouer(coup), et s'il rend faux (coup
-     * interdit), l'échec « coup refusé ».</p>
+     * <p>TODO S04 Q1, en trois temps :</p>
+     * <ol>
+     * <li>compter la ligne : numero++, le numéro qu'affiche echec.</li>
+     * <li>avant de jouer, vérifier l'équipe. Un Coup n'a pas de couleur, la partie le joue pour
+     * l'équipe au trait : si equipe n'est pas partie.trait(), ne pas jouer, et
+     * echec(ligne, "ce n'est pas aux " + Scenario.nom(equipe) + " de jouer").</li>
+     * <li>sinon, jouer le coup : appeler partie.jouer(coup). Cet appel joue le coup et rend vrai, ou
+     * rend faux si le coup est interdit (rien n'a bougé). Le coup et le test tiennent donc dans le
+     * même appel, if (!partie.jouer(coup)), et dans ce cas : echec(ligne, "coup refusé").</li>
+     * </ol>
      */
     private void jouer(Instruction ligne, Couleur equipe, Coup coup) {
         throw new UnsupportedOperationException("TODO S04 Q1");
