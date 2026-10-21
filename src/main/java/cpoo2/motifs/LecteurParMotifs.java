@@ -17,7 +17,7 @@ import cpoo2.scenario.Instruction;
 import cpoo2.scenario.Non;
 import cpoo2.scenario.Pousser;
 import cpoo2.scenario.Sauter;
-import cpoo2.scenario.Scenario;
+import cpoo2.scenario.PartieEnregistree;
 import cpoo2.scenario.Tacler;
 import cpoo2.scenario.TraitAux;
 import cpoo2.scenario.Vainqueur;
@@ -34,25 +34,25 @@ import cpoo2.scenario.Verifier;
  */
 public final class LecteurParMotifs {
 
-    private final Scenario fichier;   // la partie enregistrée, telle que lue
+    private final PartieEnregistree partieEnregistree;   // la partie enregistrée, telle que lue
 
-    public LecteurParMotifs(Scenario fichier) {
-        this.fichier = fichier;
+    public LecteurParMotifs(PartieEnregistree partieEnregistree) {
+        this.partieEnregistree = partieEnregistree;
     }
 
     /** Fourni : {@code charger("entrainement")} lit {@code parties/entrainement.partie}. */
     public static LecteurParMotifs charger(String nom) {
-        return new LecteurParMotifs(Scenario.charger("parties/" + nom + ".partie"));
+        return new LecteurParMotifs(PartieEnregistree.charger("parties/" + nom + ".partie"));
     }
 
     /** Fourni : une partie neuve, à la position de départ du fichier. */
     public Partie nouvellePartie() {
-        return new Partie(fichier.depart(), fichier.trait());
+        return new Partie(partieEnregistree.depart(), partieEnregistree.trait());
     }
 
     /**
      * Q9 : la phrase de la Q2, « 41 demi-coups : 24 déplacements, 9 poussées, 3 tacles, 5 sauts », sans
-     * Statistiques : une boucle sur fichier.instructions(), et un switch sur chaque instruction.
+     * Statistiques : une boucle sur partieEnregistree.instructions(), et un switch sur chaque instruction.
      */
     public String resume() {
         // TODO S04 Q9 : quatre compteurs, puis switch (instruction) { case Deplacer d -> ... ; ... }
@@ -94,7 +94,7 @@ public final class LecteurParMotifs {
      * rejouer a rendus. Même mise en forme que LecteurDeParties.
      */
     public String bilan(Partie rejouee, List<String> echecs) {
-        return LecteurDeParties.bilan(resultat(rejouee), fichier.entete().getOrDefault("Résultat", "?"), echecs);
+        return LecteurDeParties.bilan(resultat(rejouee), partieEnregistree.entete().getOrDefault("Résultat", "?"), echecs);
     }
 
     /** Fourni : « bleus », « rouges », « nulle », ou « pas finie », sans Executeur. */

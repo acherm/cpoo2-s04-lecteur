@@ -5,7 +5,7 @@ import java.util.List;
 import cpoo2.jeu.Partie;
 
 /**
- * Une condition sur une partie : celle qui suit {@code vérifier} dans un scénario, ou celle que le
+ * Une condition sur une partie : celle qui suit {@code vérifier} dans une partie enregistrée, ou celle que le
  * lecteur de parties cherche ({@code --chercher}). S04, étape 3 (Q3) : chaque nœud sait s'évaluer
  * sur une partie, telle qu'elle est maintenant.
  *
@@ -21,6 +21,6 @@ public sealed interface Condition permits BallonEn, TraitAux, Vainqueur, Et, Non
 
     /** Fourni : {@code Condition.lire("ballon en e3 et non trait aux bleus")} construit l'arbre. */
     static Condition lire(String texte) {
-        return Scenario.condition(List.of(texte.strip().split("\\s+")));
+        return PartieEnregistree.condition(List.of(texte.strip().split("\\s+")));
     }
 }

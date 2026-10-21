@@ -14,5 +14,5 @@ public record Sauter(Couleur equipe, Position de, Position vers) implements Inst
         throw new UnsupportedOperationException("TODO S04 Q1");
     }
 
-    @Override public String toString() { return Scenario.nom(equipe) + " saut " + de + "-" + vers; }
+    @Override public String toString() { return PartieEnregistree.nom(equipe) + " saut " + de + "-" + vers; }
 }

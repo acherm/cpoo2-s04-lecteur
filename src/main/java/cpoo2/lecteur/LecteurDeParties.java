@@ -10,7 +10,7 @@ import cpoo2.jeu.Partie;
 import cpoo2.scenario.Condition;
 import cpoo2.scenario.Executeur;
 import cpoo2.scenario.Instruction;
-import cpoo2.scenario.Scenario;
+import cpoo2.scenario.PartieEnregistree;
 import cpoo2.scenario.Statistiques;
 
 /**
@@ -29,44 +29,44 @@ public final class LecteurDeParties {
     public static final List<String> PARTIES = List.of(
             "entrainement", "entrainement-recopiee", "patiente", "club-voisin", "eclair", "sans-touche");
 
-    private final Scenario fichier;   // la partie enregistrée, telle que lue
+    private final PartieEnregistree partieEnregistree;   // la partie enregistrée, telle que lue
 
-    public LecteurDeParties(Scenario fichier) {
-        this.fichier = fichier;
+    public LecteurDeParties(PartieEnregistree partieEnregistree) {
+        this.partieEnregistree = partieEnregistree;
     }
 
     /** Fourni : {@code charger("entrainement")} lit {@code parties/entrainement.partie}. */
     public static LecteurDeParties charger(String nom) {
         String ressource = nom.contains("/") ? nom : "parties/" + nom + ".partie";
-        return new LecteurDeParties(Scenario.charger(ressource));
+        return new LecteurDeParties(PartieEnregistree.charger(ressource));
     }
 
     /** Fourni : « Entraînement, 2026-10-07 : IA gloutonne (bleus) contre IA gloutonne (rouges) ». */
     public String presentation() {
-        Map<String, String> e = fichier.entete();
+        Map<String, String> e = partieEnregistree.entete();
         return e.getOrDefault("Événement", "Partie sans nom") + ", " + e.getOrDefault("Date", "sans date") + " : "
                 + e.getOrDefault("Bleus", "?") + " (bleus) contre " + e.getOrDefault("Rouges", "?") + " (rouges)";
     }
 
     /** Q2 : « 41 demi-coups : 24 déplacements, 9 poussées, 3 tacles, 5 sauts », sans rien jouer. */
     public String resume() {
-        // TODO S04 Q2 : une Statistiques, fichier.parcourir(statistiques), puis la phrase
+        // TODO S04 Q2 : une Statistiques, partieEnregistree.parcourir(statistiques), puis la phrase
         throw new UnsupportedOperationException("TODO S04 Q2");
     }
 
     /** Fourni : une partie neuve, à la position de départ du fichier. */
     public Partie nouvellePartie() {
-        return new Partie(fichier.depart(), fichier.trait());
+        return new Partie(partieEnregistree.depart(), partieEnregistree.trait());
     }
 
     /**
      * Fourni : rejoue toutes les lignes du fichier sur cette partie. Un Executeur passe sur chaque
-     * ligne (fichier.parcourir), puis on le rend : il garde la partie rejouée, son résultat et ses
+     * ligne (partieEnregistree.parcourir), puis on le rend : il garde la partie rejouée, son résultat et ses
      * échecs. C'est le modèle du résumé (Q2) : un objet, un parcours, puis on lui demande ce qu'il a vu.
      */
     public Executeur rejouer(Partie sur) {
         Executeur executeur = new Executeur(sur);
-        fichier.parcourir(executeur);
+        partieEnregistree.parcourir(executeur);
         return executeur;
     }
 
@@ -76,7 +76,7 @@ public final class LecteurDeParties {
      * la faute (les suivants en découlent).
      */
     public String bilan(Executeur executeur) {
-        return bilan(executeur.resultat(), fichier.entete().getOrDefault("Résultat", "?"), executeur.echecs());
+        return bilan(executeur.resultat(), partieEnregistree.entete().getOrDefault("Résultat", "?"), executeur.echecs());
     }
 
     /** Fourni : la mise en forme du bilan, commune à ce lecteur et à celui de la Q9. */

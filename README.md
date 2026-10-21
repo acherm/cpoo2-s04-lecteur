@@ -29,7 +29,7 @@ src/main/java/cpoo2/
     Statistiques               ← Q2 : résumer, sans jouer
     BallonEn, TraitAux, Vainqueur, Et, Non ← Q3 : les conditions s'évaluent
     Afficheur                  ← fourni : le modèle des Q1 et Q2
-    Scenario, Instruction, Condition, VisiteurDeScenario, Exemples ← fournis
+    PartieEnregistree, Instruction, Condition, VisiteurDeScenario, Exemples ← fournis
     SurchargeDemo              ← à exécuter (Q7)
   motifs/LecteurParMotifs      ← Q9 : le même lecteur, sans visiteur
   jeu/                         ← fourni : la partie, son plateau, ses coups
@@ -43,7 +43,7 @@ rendus/s04.md                  ← vos réponses (Q5 à Q10), à compléter pour
 
 | Suite | Questions | Tests | Rouges au départ |
 |---|---|---|---|
-| `cpoo2.scenario.ScenarioTest` | fourni | 5 | 0 |
+| `cpoo2.scenario.PartieEnregistreeTest` | fourni | 5 | 0 |
 | `cpoo2.scenario.VisiteursTest` | Q1, Q2 | 5 | 5 |
 | `cpoo2.scenario.InterpreteurTest` | Q3 (et Q1) | 5 | 5 |
 | `cpoo2.lecteur.LecteurDePartiesTest` | Q1, Q2, Q4 | 5 | 5 |

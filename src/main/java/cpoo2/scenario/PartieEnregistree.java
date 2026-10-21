@@ -19,8 +19,8 @@ import cpoo2.jeu.Plateau;
 import cpoo2.jeu.Position;
 
 /**
- * Un scénario : une position de départ, l'équipe au trait, et des instructions. Il se lit dans
- * un texte (fourni : ce n'est pas l'objet de la séance), et se parcourt avec un visiteur.
+ * Une partie enregistrée : une position de départ, l'équipe au trait, et des instructions. Elle se
+ * lit dans un texte (fourni : ce n'est pas l'objet de la séance), et se parcourt avec un visiteur.
  *
  * <pre>
  * # la première attaque bleue
@@ -34,7 +34,7 @@ import cpoo2.jeu.Position;
  * {@code départ officiel}, ou {@code départ} suivi d'une position en une ligne
  * ({@link Plateau#enLigne()}) et de l'équipe au trait.</p>
  *
- * <p>Avant le départ, un scénario peut porter un <b>en-tête</b> : des métadonnées, une par ligne,
+ * <p>Avant le départ, une partie enregistrée peut porter un <b>en-tête</b> : des métadonnées, une par ligne,
  * {@code [Clé "valeur"]}, comme l'en-tête d'une partie d'échecs au format PGN. Le lecteur les
  * garde telles quelles, dans l'ordre ({@link #entete()}), sans les interpréter.</p>
  *
@@ -45,15 +45,15 @@ import cpoo2.jeu.Position;
  * bleus déplacement e5-e4
  * </pre>
  */
-public record Scenario(Plateau depart, Couleur trait, List<Instruction> instructions, Map<String, String> entete) {
+public record PartieEnregistree(Plateau depart, Couleur trait, List<Instruction> instructions, Map<String, String> entete) {
 
-    public Scenario {
+    public PartieEnregistree {
         instructions = List.copyOf(instructions);
         entete = Collections.unmodifiableMap(new LinkedHashMap<>(entete));
     }
 
-    /** Un scénario sans en-tête. */
-    public Scenario(Plateau depart, Couleur trait, List<Instruction> instructions) {
+    /** Une partie enregistrée sans en-tête. */
+    public PartieEnregistree(Plateau depart, Couleur trait, List<Instruction> instructions) {
         this(depart, trait, instructions, Map.of());
     }
 
@@ -67,11 +67,11 @@ public record Scenario(Plateau depart, Couleur trait, List<Instruction> instruct
     // ---------- la lecture (fournie) ----------
 
     /**
-     * Lit un scénario rangé dans les ressources du projet ({@code src/main/resources}), par exemple
-     * {@code Scenario.charger("parties/entrainement.partie")}.
+     * Lit une partie enregistrée rangée dans les ressources du projet ({@code src/main/resources}), par exemple
+     * {@code PartieEnregistree.charger("parties/entrainement.partie")}.
      */
-    public static Scenario charger(String ressource) {
-        try (InputStream in = Scenario.class.getClassLoader().getResourceAsStream(ressource)) {
+    public static PartieEnregistree charger(String ressource) {
+        try (InputStream in = PartieEnregistree.class.getClassLoader().getResourceAsStream(ressource)) {
             if (in == null) throw new IllegalArgumentException("ressource introuvable : " + ressource);
             return lire(new String(in.readAllBytes(), StandardCharsets.UTF_8));
         } catch (IOException e) {
@@ -81,7 +81,7 @@ public record Scenario(Plateau depart, Couleur trait, List<Instruction> instruct
 
     private static final Pattern METADONNEE = Pattern.compile("\\[(\\S+)\\s+\"(.*)\"\\]");
 
-    public static Scenario lire(String texte) {
+    public static PartieEnregistree lire(String texte) {
         List<String> lignes = new ArrayList<>();
         for (String l : texte.split("\\R")) {
             l = l.strip();
@@ -95,7 +95,7 @@ public record Scenario(Plateau depart, Couleur trait, List<Instruction> instruct
             entete.put(m.group(1), m.group(2));
         }
         if (lignes.isEmpty() || !lignes.get(0).startsWith("départ")) {
-            throw new IllegalArgumentException("un scénario commence par « départ officiel »");
+            throw new IllegalArgumentException("une partie enregistrée commence par « départ officiel »");
         }
         String[] d = lignes.get(0).split("\\s+");
         Plateau depart;
@@ -113,7 +113,7 @@ public record Scenario(Plateau depart, Couleur trait, List<Instruction> instruct
         for (String l : lignes.subList(1, lignes.size())) {
             instructions.add(instruction(l));
         }
-        return new Scenario(depart, trait, instructions, entete);
+        return new PartieEnregistree(depart, trait, instructions, entete);
     }
 
     static Instruction instruction(String ligne) {

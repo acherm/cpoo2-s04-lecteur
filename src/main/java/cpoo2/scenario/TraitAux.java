@@ -10,5 +10,5 @@ public record TraitAux(Couleur equipe) implements Condition {
         throw new UnsupportedOperationException("TODO S04 Q3");
     }
 
-    @Override public String toString() { return "trait aux " + Scenario.nom(equipe); }
+    @Override public String toString() { return "trait aux " + PartieEnregistree.nom(equipe); }
 }

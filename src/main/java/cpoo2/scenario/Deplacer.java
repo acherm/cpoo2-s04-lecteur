@@ -14,5 +14,5 @@ public record Deplacer(Couleur equipe, Position de, Position vers) implements In
         throw new UnsupportedOperationException("TODO S04 Q1");
     }
 
-    @Override public String toString() { return Scenario.nom(equipe) + " déplacement " + de + "-" + vers; }
+    @Override public String toString() { return PartieEnregistree.nom(equipe) + " déplacement " + de + "-" + vers; }
 }

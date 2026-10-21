@@ -1,6 +1,6 @@
 package cpoo2.scenario;
 
-/** Fourni : un scénario court, pour les tests. Il joue, et il vérifie. */
+/** Fourni : une partie courte, pour les tests. Il joue, et il vérifie. */
 public final class Exemples {
 
     /** La première attaque bleue : trois poussées, un but en g1, et deux vérifications. */

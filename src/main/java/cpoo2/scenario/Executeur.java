@@ -8,7 +8,7 @@ import cpoo2.jeu.Coup;
 import cpoo2.jeu.Partie;
 
 /**
- * S04, Q1 : jouer un scénario, ou une partie enregistrée, sur une vraie partie. Un coup est joué
+ * S04, Q1 : rejouer une partie enregistrée sur une vraie partie. Un coup est joué
  * s'il est à l'équipe au trait et si la partie l'accepte, une vérification est évaluée (sa
  * condition, Q3). Chaque échec est noté, avec le numéro de l'instruction, et l'exécution continue.
  */
@@ -22,10 +22,10 @@ public final class Executeur implements VisiteurDeScenario {
         this.partie = partie;
     }
 
-    /** Joue le scénario depuis sa position de départ. */
-    public static Executeur executer(Scenario scenario) {
-        Executeur e = new Executeur(new Partie(scenario.depart(), scenario.trait()));
-        scenario.parcourir(e);
+    /** Rejoue la partie enregistrée depuis sa position de départ. */
+    public static Executeur executer(PartieEnregistree partieEnregistree) {
+        Executeur e = new Executeur(new Partie(partieEnregistree.depart(), partieEnregistree.trait()));
+        partieEnregistree.parcourir(e);
         return e;
     }
 
@@ -41,7 +41,7 @@ public final class Executeur implements VisiteurDeScenario {
      * parcourir qui le sait, et qui lui demande ensuite son résultat (comme Afficheur.texte()).
      *
      * <p>TODO S04 Q1 : partie.estTerminee() dit si la partie est finie, partie.vainqueur() qui a
-     * marqué (vide si personne), et Scenario.nom(equipe) donne « bleus » ou « rouges ».</p>
+     * marqué (vide si personne), et PartieEnregistree.nom(equipe) donne « bleus » ou « rouges ».</p>
      */
     public String resultat() {
         throw new UnsupportedOperationException("TODO S04 Q1");
@@ -75,7 +75,7 @@ public final class Executeur implements VisiteurDeScenario {
      * <li>compter la ligne : numero++, le numéro qu'affiche echec.</li>
      * <li>avant de jouer, vérifier l'équipe. Un Coup n'a pas de couleur, la partie le joue pour
      * l'équipe au trait : si equipe n'est pas partie.trait(), ne pas jouer, et
-     * echec(ligne, "ce n'est pas aux " + Scenario.nom(equipe) + " de jouer").</li>
+     * echec(ligne, "ce n'est pas aux " + PartieEnregistree.nom(equipe) + " de jouer").</li>
      * <li>sinon, jouer le coup : appeler partie.jouer(coup). Cet appel joue le coup et rend vrai, ou
      * rend faux si le coup est interdit (rien n'a bougé). Le coup et le test tiennent donc dans le
      * même appel, if (!partie.jouer(coup)), et dans ce cas : echec(ligne, "coup refusé").</li>

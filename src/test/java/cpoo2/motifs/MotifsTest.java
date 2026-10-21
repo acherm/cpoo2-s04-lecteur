@@ -12,7 +12,7 @@ import cpoo2.jeu.Coup;
 import cpoo2.jeu.Partie;
 import cpoo2.scenario.Condition;
 import cpoo2.scenario.Exemples;
-import cpoo2.scenario.Scenario;
+import cpoo2.scenario.PartieEnregistree;
 
 /** S04, Q9 : le lecteur sans visiteur, un switch par opération. Tous rouges sur le squelette. */
 class MotifsTest {
@@ -23,7 +23,7 @@ class MotifsTest {
     void leResumeSansStatistiques() {
         assertEquals("41 demi-coups : 24 déplacements, 9 poussées, 3 tacles, 5 sauts", ENTRAINEMENT.resume());
         assertEquals("5 demi-coups : 2 déplacements, 3 poussées, 0 tacles, 0 sauts",
-                new LecteurParMotifs(Scenario.lire(Exemples.PREMIERE_ATTAQUE)).resume(),
+                new LecteurParMotifs(PartieEnregistree.lire(Exemples.PREMIERE_ATTAQUE)).resume(),
                 "les vérifications ne sont pas des demi-coups");
     }
 
@@ -51,7 +51,7 @@ class MotifsTest {
 
     @Test
     void rejouerNoteLesEchecsEtLesVerificationsFausses() {
-        LecteurParMotifs lecteur = new LecteurParMotifs(Scenario.lire("""
+        LecteurParMotifs lecteur = new LecteurParMotifs(PartieEnregistree.lire("""
                 départ officiel
                 bleus poussée c5-d4
                 bleus déplacement e5-e4

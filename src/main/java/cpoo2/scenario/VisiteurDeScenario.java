@@ -1,7 +1,7 @@
 package cpoo2.scenario;
 
 /**
- * Une opération sur les instructions d'un scénario ou d'une partie, une méthode par sorte
+ * Une opération sur les instructions d'une partie enregistrée, une méthode par sorte
  * d'instruction. Fournie.
  *
  * <p>Les cinq méthodes ont des <b>noms distincts</b>. Elles pourraient toutes s'appeler

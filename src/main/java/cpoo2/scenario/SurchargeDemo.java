@@ -21,7 +21,7 @@ public final class SurchargeDemo {
 
     public static void main(String[] args) {
         VisiteurSurcharge v = new VisiteurSurcharge();
-        Pousser poussee = (Pousser) Scenario.instruction("bleus poussée c5-d4");
+        Pousser poussee = (Pousser) PartieEnregistree.instruction("bleus poussée c5-d4");
         Instruction memeObjet = poussee;
         System.out.println("type déclaré Pousser     -> " + v.visiter(poussee));
         System.out.println("type déclaré Instruction -> " + v.visiter(memeObjet));

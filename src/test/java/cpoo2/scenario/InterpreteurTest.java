@@ -56,9 +56,9 @@ class InterpreteurTest {
 
     @Test
     void lExecuteurEvalueLesVerifications() {
-        assertEquals(List.of(), Executeur.executer(Scenario.lire(Exemples.PREMIERE_ATTAQUE)).echecs(),
+        assertEquals(List.of(), Executeur.executer(PartieEnregistree.lire(Exemples.PREMIERE_ATTAQUE)).echecs(),
                 "les deux vérifications de la première attaque sont vraies");
-        Executeur e = Executeur.executer(Scenario.lire("""
+        Executeur e = Executeur.executer(PartieEnregistree.lire("""
                 départ officiel
                 bleus poussée c5-d4
                 vérifier ballon en d4
@@ -71,7 +71,7 @@ class InterpreteurTest {
 
     @Test
     void leVainqueurApresUnBut() {
-        Partie p = Executeur.executer(Scenario.lire(Exemples.PREMIERE_ATTAQUE)).partie();
+        Partie p = Executeur.executer(PartieEnregistree.lire(Exemples.PREMIERE_ATTAQUE)).partie();
         assertTrue(new Vainqueur(Couleur.BLEUS).evaluer(p));
         assertFalse(new Vainqueur(Couleur.ROUGES).evaluer(p));
     }

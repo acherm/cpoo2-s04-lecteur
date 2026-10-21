@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import cpoo2.scenario.Executeur;
-import cpoo2.scenario.Scenario;
+import cpoo2.scenario.PartieEnregistree;
 
 /** S04 : le lecteur de parties, une étape après l'autre. Tous rouges sur le squelette. */
 class LecteurDePartiesTest {
@@ -19,7 +19,7 @@ class LecteurDePartiesTest {
     }
 
     static Executeur rejouer(String partie) {
-        LecteurDeParties lecteur = new LecteurDeParties(Scenario.lire(partie));
+        LecteurDeParties lecteur = new LecteurDeParties(PartieEnregistree.lire(partie));
         return lecteur.rejouer(lecteur.nouvellePartie());
     }
 

@@ -9,7 +9,7 @@ class LecteurDeParties {
   +rejouer(sur : Partie) : Executeur
   +bilan(e : Executeur) : String
 }
-class Scenario <<record>> {
+class PartieEnregistree <<record>> {
   +entete() : Map<String, String>
   +instructions() : List<Instruction>
   +parcourir(v : VisiteurDeScenario)
@@ -59,9 +59,9 @@ class Plateau {
   +enTexte() : String
 }
 
-LecteurDeParties --> Scenario : fichier
+LecteurDeParties --> PartieEnregistree : partieEnregistree
 LecteurDeParties .r.> Partie : rejoue
-Scenario o-- "*" Instruction
+PartieEnregistree o-- "*" Instruction
 Instruction <|.. Deplacer
 Instruction <|.. Pousser
 Instruction <|.. Tacler

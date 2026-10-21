@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Fourni : le scénario, ligne par ligne, tel qu'on l'écrirait. C'est le modèle des Q1 et Q2 : une
+ * Fourni : la partie enregistrée, ligne par ligne, tel qu'on l'écrirait. C'est le modèle des Q1 et Q2 : une
  * méthode par sorte d'instruction, un résultat gardé dans un champ, et rendu par un accesseur.
  */
 public final class Afficheur implements VisiteurDeScenario {

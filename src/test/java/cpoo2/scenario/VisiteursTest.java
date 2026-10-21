@@ -18,7 +18,7 @@ import cpoo2.jeu.Position;
  */
 class VisiteursTest {
 
-    static final Scenario ATTAQUE = Scenario.lire(Exemples.PREMIERE_ATTAQUE);
+    static final PartieEnregistree ATTAQUE = PartieEnregistree.lire(Exemples.PREMIERE_ATTAQUE);
 
     /** Un visiteur témoin : il note quelle méthode a été appelée. */
     static final class Temoin implements VisiteurDeScenario {
@@ -35,7 +35,7 @@ class VisiteursTest {
         Temoin t = new Temoin();
         for (String ligne : List.of("bleus déplacement b6-b5", "bleus poussée c5-d4", "bleus tacle d5-c4",
                                     "bleus saut c5-e3", "vérifier trait aux bleus")) {
-            Scenario.instruction(ligne).accept(t);
+            PartieEnregistree.instruction(ligne).accept(t);
         }
         assertEquals(List.of("Deplacer", "Pousser", "Tacler", "Sauter", "Verifier"), t.appels,
                 "le type déclaré est Instruction : c'est accept qui retrouve le type réel");
@@ -53,7 +53,7 @@ class VisiteursTest {
                 rouges déplacement c3-c4
                 bleus poussée e3-f2
                 vérifier vainqueur bleus et ballon en g1""", a.texte());
-        Scenario relu = Scenario.lire("départ officiel\n" + a.texte());
+        PartieEnregistree relu = PartieEnregistree.lire("départ officiel\n" + a.texte());
         assertEquals(ATTAQUE, relu, "ce que l'afficheur écrit, le lecteur le relit à l'identique");
     }
 
@@ -66,7 +66,7 @@ class VisiteursTest {
 
     @Test
     void lExecuteurRejoueUnePartieEnregistree() {
-        Executeur e = Executeur.executer(Scenario.charger("parties/entrainement.partie"));
+        Executeur e = Executeur.executer(PartieEnregistree.charger("parties/entrainement.partie"));
         assertEquals(List.of(), e.echecs(), "chaque coup est joué par la bonne équipe, et accepté");
         assertTrue(e.partie().estTerminee());
         assertEquals(Optional.of(Couleur.BLEUS), e.partie().vainqueur());
@@ -75,7 +75,7 @@ class VisiteursTest {
 
     @Test
     void lExecuteurNoteChaqueEchec() {
-        Executeur e = Executeur.executer(Scenario.lire("""
+        Executeur e = Executeur.executer(PartieEnregistree.lire("""
                 départ officiel
                 bleus poussée c5-d4
                 bleus déplacement e5-e4
