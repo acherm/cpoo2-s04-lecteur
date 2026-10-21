@@ -25,7 +25,7 @@ src/main/java/cpoo2/
   lecteur/LecteurDeParties     ← le lecteur : rejouer (fourni), puis Q2, Q4
   scenario/                    ← une partie lue : ses instructions, ses conditions, ses visiteurs
     Deplacer, Pousser, Tacler, Sauter, Verifier ← Q1 : accept
-    Executeur                  ← Q1 : rejouer, puis le résultat
+    ChessBallGamePlayer                  ← Q1 : rejouer, puis le résultat
     Statistiques               ← Q2 : résumer, sans jouer
     BallonEn, TraitAux, Vainqueur, Et, Non ← Q3 : les conditions s'évaluent
     Afficheur                  ← fourni : le modèle des Q1 et Q2

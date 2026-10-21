@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import cpoo2.scenario.Executeur;
+import cpoo2.scenario.ChessBallGamePlayer;
 import cpoo2.scenario.PartieEnregistree;
 
 /** S04 : le lecteur de parties, une étape après l'autre. Tous rouges sur le squelette. */
@@ -18,7 +18,7 @@ class LecteurDePartiesTest {
         return lecteur.bilan(lecteur.rejouer(lecteur.nouvellePartie()));
     }
 
-    static Executeur rejouer(String partie) {
+    static ChessBallGamePlayer rejouer(String partie) {
         LecteurDeParties lecteur = new LecteurDeParties(PartieEnregistree.lire(partie));
         return lecteur.rejouer(lecteur.nouvellePartie());
     }

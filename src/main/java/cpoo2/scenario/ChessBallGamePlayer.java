@@ -12,19 +12,19 @@ import cpoo2.jeu.Partie;
  * s'il est à l'équipe au trait et si la partie l'accepte, une vérification est évaluée (sa
  * condition, Q3). Chaque échec est noté, avec le numéro de l'instruction, et l'exécution continue.
  */
-public final class Executeur implements VisiteurDeScenario {
+public final class ChessBallGamePlayer implements VisiteurDeScenario {
 
     private final Partie partie;
     private final List<String> echecs = new ArrayList<>();
     private int numero;   // le numéro de l'instruction en cours
 
-    public Executeur(Partie partie) {
+    public ChessBallGamePlayer(Partie partie) {
         this.partie = partie;
     }
 
     /** Rejoue la partie enregistrée depuis sa position de départ. */
-    public static Executeur executer(PartieEnregistree partieEnregistree) {
-        Executeur e = new Executeur(new Partie(partieEnregistree.depart(), partieEnregistree.trait()));
+    public static ChessBallGamePlayer rejouer(PartieEnregistree partieEnregistree) {
+        ChessBallGamePlayer e = new ChessBallGamePlayer(new Partie(partieEnregistree.depart(), partieEnregistree.trait()));
         partieEnregistree.parcourir(e);
         return e;
     }

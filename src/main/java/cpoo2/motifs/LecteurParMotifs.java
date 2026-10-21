@@ -70,8 +70,8 @@ public final class LecteurParMotifs {
     }
 
     /**
-     * Q9 : la Q1 sans Executeur. Joue chaque instruction du fichier sur la partie « sur », dans l'ordre,
-     * et rend les échecs, au format de l'exécuteur (voir echec) : « ce n'est pas aux bleus de jouer »,
+     * Q9 : la Q1 sans ChessBallGamePlayer. Joue chaque instruction du fichier sur la partie « sur », dans l'ordre,
+     * et rend les échecs, au format du ChessBallGamePlayer (voir echec) : « ce n'est pas aux bleus de jouer »,
      * « coup refusé », ou « fausse » pour une vérification. Vide si tout s'est bien passé.
      */
     public List<String> rejouer(Partie sur) {
@@ -79,7 +79,7 @@ public final class LecteurParMotifs {
         throw new UnsupportedOperationException("TODO S04 Q9");
     }
 
-    /** Fourni : « instruction 18 (rouges tacle f2-e2) : coup refusé », comme l'exécuteur. */
+    /** Fourni : « instruction 18 (rouges tacle f2-e2) : coup refusé », comme le ChessBallGamePlayer. */
     static String echec(int numero, Instruction instruction, String pourquoi) {
         return "instruction " + numero + " (" + instruction + ") : " + pourquoi;
     }
@@ -97,7 +97,7 @@ public final class LecteurParMotifs {
         return LecteurDeParties.bilan(resultat(rejouee), partieEnregistree.entete().getOrDefault("Résultat", "?"), echecs);
     }
 
-    /** Fourni : « bleus », « rouges », « nulle », ou « pas finie », sans Executeur. */
+    /** Fourni : « bleus », « rouges », « nulle », ou « pas finie », sans ChessBallGamePlayer. */
     static String resultat(Partie partie) {
         if (!partie.estTerminee()) {
             return "pas finie";

@@ -13,7 +13,7 @@ import cpoo2.jeu.Couleur;
 import cpoo2.jeu.Position;
 
 /**
- * S04, étapes 1 et 2 : jouer les instructions (Q1, {@code accept} et {@link Executeur}), puis les compter
+ * S04, étapes 1 et 2 : jouer les instructions (Q1, {@code accept} et {@link ChessBallGamePlayer}), puis les compter
  * (Q2, {@link Statistiques}). L'afficheur est fourni : son test passe dès que {@code accept} est écrit.
  */
 class VisiteursTest {
@@ -65,8 +65,8 @@ class VisiteursTest {
     }
 
     @Test
-    void lExecuteurRejoueUnePartieEnregistree() {
-        Executeur e = Executeur.executer(PartieEnregistree.charger("parties/entrainement.partie"));
+    void lePlayerRejoueUnePartieEnregistree() {
+        ChessBallGamePlayer e = ChessBallGamePlayer.rejouer(PartieEnregistree.charger("parties/entrainement.partie"));
         assertEquals(List.of(), e.echecs(), "chaque coup est joué par la bonne équipe, et accepté");
         assertTrue(e.partie().estTerminee());
         assertEquals(Optional.of(Couleur.BLEUS), e.partie().vainqueur());
@@ -74,8 +74,8 @@ class VisiteursTest {
     }
 
     @Test
-    void lExecuteurNoteChaqueEchec() {
-        Executeur e = Executeur.executer(PartieEnregistree.lire("""
+    void lePlayerNoteChaqueEchec() {
+        ChessBallGamePlayer e = ChessBallGamePlayer.rejouer(PartieEnregistree.lire("""
                 départ officiel
                 bleus poussée c5-d4
                 bleus déplacement e5-e4

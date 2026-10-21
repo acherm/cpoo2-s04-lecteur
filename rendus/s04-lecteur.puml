@@ -6,8 +6,8 @@ title Mon lecteur de parties
 
 class LecteurDeParties {
   +nouvellePartie() : Partie
-  +rejouer(sur : Partie) : Executeur
-  +bilan(e : Executeur) : String
+  +rejouer(sur : Partie) : ChessBallGamePlayer
+  +bilan(e : ChessBallGamePlayer) : String
 }
 class PartieEnregistree <<record>> {
   +entete() : Map<String, String>

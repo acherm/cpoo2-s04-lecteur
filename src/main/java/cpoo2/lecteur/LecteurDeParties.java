@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import cpoo2.jeu.Partie;
 import cpoo2.scenario.Condition;
-import cpoo2.scenario.Executeur;
+import cpoo2.scenario.ChessBallGamePlayer;
 import cpoo2.scenario.Instruction;
 import cpoo2.scenario.PartieEnregistree;
 import cpoo2.scenario.Statistiques;
@@ -60,14 +60,14 @@ public final class LecteurDeParties {
     }
 
     /**
-     * Fourni : rejoue toutes les lignes du fichier sur cette partie. Un Executeur passe sur chaque
+     * Fourni : rejoue toutes les lignes du fichier sur cette partie. Un ChessBallGamePlayer passe sur chaque
      * ligne (partieEnregistree.parcourir), puis on le rend : il garde la partie rejouée, son résultat et ses
      * échecs. C'est le modèle du résumé (Q2) : un objet, un parcours, puis on lui demande ce qu'il a vu.
      */
-    public Executeur rejouer(Partie sur) {
-        Executeur executeur = new Executeur(sur);
-        partieEnregistree.parcourir(executeur);
-        return executeur;
+    public ChessBallGamePlayer rejouer(Partie sur) {
+        ChessBallGamePlayer player = new ChessBallGamePlayer(sur);
+        partieEnregistree.parcourir(player);
+        return player;
     }
 
     /**
@@ -75,8 +75,8 @@ public final class LecteurDeParties {
      * qu'annonce l'en-tête, puis, s'il y en a, le nombre d'échecs et le premier, le seul qui désigne
      * la faute (les suivants en découlent).
      */
-    public String bilan(Executeur executeur) {
-        return bilan(executeur.resultat(), partieEnregistree.entete().getOrDefault("Résultat", "?"), executeur.echecs());
+    public String bilan(ChessBallGamePlayer player) {
+        return bilan(player.resultat(), partieEnregistree.entete().getOrDefault("Résultat", "?"), player.echecs());
     }
 
     /** Fourni : la mise en forme du bilan, commune à ce lecteur et à celui de la Q9. */
@@ -92,8 +92,8 @@ public final class LecteurDeParties {
 
     /** Q4 : les numéros des instructions après lesquelles la condition est vraie. */
     public List<Integer> chercher(String texte) {
-        // TODO S04 Q4 : la condition lue, une partie neuve et son Executeur, puis, instruction après
-        // instruction : accept(executeur), et si la condition est vraie, noter le numéro
+        // TODO S04 Q4 : la condition lue, une partie neuve et son ChessBallGamePlayer, puis, instruction après
+        // instruction : accept(player), et si la condition est vraie, noter le numéro
         throw new UnsupportedOperationException("TODO S04 Q4");
     }
 
@@ -107,8 +107,8 @@ public final class LecteurDeParties {
         System.out.println(essayer(this::resume));
         System.out.println(essayer(() -> {
             Partie p = nouvellePartie();
-            Executeur executeur = rejouer(p);
-            return p.plateau().enTexte() + "résultat : " + bilan(executeur);
+            ChessBallGamePlayer player = rejouer(p);
+            return p.plateau().enTexte() + "résultat : " + bilan(player);
         }));
         recherche.ifPresent(c -> System.out.println(essayer(() -> "« " + c + " » : après les demi-coups " + chercher(c))));
     }

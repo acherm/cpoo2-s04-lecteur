@@ -39,7 +39,7 @@ class MotifsTest {
     }
 
     @Test
-    void rejouerSansExecuteur() {
+    void rejouerSansPlayer() {
         Partie p = ENTRAINEMENT.nouvellePartie();
         assertEquals(List.of(), ENTRAINEMENT.rejouer(p));
         assertEquals("bleus (annoncé : bleus)", ENTRAINEMENT.bilan(p, List.of()));
