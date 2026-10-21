@@ -1,0 +1,17 @@
+# La première attaque bleue : trois poussées, un but en g1. Une partie courte, qui se vérifie
+# elle-même : une ligne « vérifier » affirme un fait sur la partie, à cet instant.
+[Événement "Première attaque"]
+[Date "2026-10-21"]
+[Bleus "Exemple"]
+[Rouges "Exemple"]
+[Règles "officielles"]
+[Résultat "bleus"]
+
+départ officiel
+bleus poussée c5-d4
+rouges déplacement c2-c3
+vérifier ballon en e3 et trait aux bleus
+bleus poussée d4-e3
+rouges déplacement c3-c4
+bleus poussée e3-f2
+vérifier vainqueur bleus et ballon en g1

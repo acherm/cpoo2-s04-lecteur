@@ -12,6 +12,7 @@ cd cpoo2-s04-lecteur
 mvn test                    # rouge au départ : c'est l'énoncé
 mvn -q compile exec:java    # le lecteur, sur les six parties de la boîte
 mvn -q compile exec:java -Dexec.args="entrainement --chercher ballon en e4"
+mvn -q compile exec:java -Dexec.args="premiere-attaque"   # une partie avec des vérifications
 ```
 
 Tant qu'une question n'est pas écrite, le lecteur l'affiche à sa place :
@@ -32,7 +33,7 @@ src/main/java/cpoo2/
     SurchargeDemo              ← à exécuter (Q8)
   motifs/LecteurParMotifs      ← Q10 : le même lecteur, sans visiteur
   jeu/                         ← fourni : la partie, son plateau, ses coups
-src/main/resources/parties/    ← six parties enregistrées
+src/main/resources/parties/    ← six parties enregistrées, et premiere-attaque, qui se vérifie elle-même (vérifier …)
 lib/                           ← l'arbitre du ChessBall de la boîte, compilé : Maven le trouve seul
 rendus/s04-lecteur.puml        ← Q6 : le point de départ de votre diagramme (PlantUML Studio)
 rendus/s04.md                  ← vos réponses (Q6 à Q11), à compléter pour le rendu
