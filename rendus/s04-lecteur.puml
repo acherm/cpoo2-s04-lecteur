@@ -1,17 +1,27 @@
-' S04 Q6 : le point de départ de votre diagramme. Copiez-le dans PlantUML Studio
-' (https://blog.mathieuacher.com/plantuml-studio/), complétez-le en suivant le
+' S04 Q6 : le point de départ de votre diagramme, celui du code fourni (début du sujet). Copiez-le
+' dans PlantUML Studio (https://blog.mathieuacher.com/plantuml-studio/), complétez-le en suivant le
 ' sujet, puis recollez ici le texte complet, et posez l'image à côté (s04-lecteur.svg).
 @startuml
 title Mon lecteur de parties
 
 class LecteurDeParties {
-  +resume() : String
+  +nouvellePartie() : Partie
+  +rejouer(sur : Partie) : Executeur
+  +bilan(e : Executeur) : String
 }
 class Scenario <<record>> {
+  +entete() : Map<String, String>
+  +instructions() : List<Instruction>
   +parcourir(v : VisiteurDeScenario)
 }
-interface Instruction {
+interface Instruction <<sealed>> {
   +accept(v : VisiteurDeScenario)
+}
+class Deplacer <<record>> {
+  equipe : Couleur
+  de : Position
+  vers : Position
+  +enCoup() : Coup
 }
 class Pousser <<record>> {
   equipe : Couleur
@@ -19,8 +29,44 @@ class Pousser <<record>> {
   vers : Position
   +enCoup() : Coup
 }
+class Tacler <<record>> {
+  equipe : Couleur
+  de : Position
+  vers : Position
+  +enCoup() : Coup
+}
+class Sauter <<record>> {
+  equipe : Couleur
+  de : Position
+  vers : Position
+  +enCoup() : Coup
+}
+class Verifier <<record>> {
+  condition : Condition
+}
+interface Coup <<sealed>>
+note bottom of Coup : un coup du jeu,\nsans couleur
+class Partie {
+  +trait() : Couleur
+  +jouer(c : Coup) : boolean
+  +estTerminee() : boolean
+  +vainqueur() : Optional<Couleur>
+  +plateau() : Plateau
+}
+note top of Partie : c'est elle qui joue les coups :\nelle connaît les règles\n(avec l'arbitre de lib/)
+class Plateau {
+  +ballon() : Position
+  +enTexte() : String
+}
 
 LecteurDeParties --> Scenario : fichier
+LecteurDeParties .r.> Partie : rejoue
 Scenario o-- "*" Instruction
+Instruction <|.. Deplacer
 Instruction <|.. Pousser
+Instruction <|.. Tacler
+Instruction <|.. Sauter
+Instruction <|.. Verifier
+Partie --> Plateau
+Partie ..> Coup : jouer
 @enduml

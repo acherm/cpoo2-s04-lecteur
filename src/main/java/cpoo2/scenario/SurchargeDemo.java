@@ -1,7 +1,7 @@
 package cpoo2.scenario;
 
 /**
- * S04, Q8 : l'expérience. « Pourquoi les méthodes {@code accept} sont-elles nécessaires ? »
+ * S04, Q7 : l'expérience. « Pourquoi les méthodes {@code accept} sont-elles nécessaires ? »
  *
  * <p>Supposons un visiteur qui, au lieu de cinq noms distincts, <b>surcharge</b> un unique nom
  * {@code visiter}, et un client qui l'appelle directement, sans passer par {@code accept}.

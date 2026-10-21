@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import cpoo2.scenario.Executeur;
 import cpoo2.scenario.Scenario;
 
 /** S04 : le lecteur de parties, une étape après l'autre. Tous rouges sur le squelette. */
@@ -13,24 +14,29 @@ class LecteurDePartiesTest {
 
     static final LecteurDeParties ENTRAINEMENT = LecteurDeParties.charger("entrainement");
 
-    static String jugement(LecteurDeParties lecteur) {
-        return lecteur.verdict(lecteur.rejouer(lecteur.nouvellePartie()));
+    static String bilan(LecteurDeParties lecteur) {
+        return lecteur.bilan(lecteur.rejouer(lecteur.nouvellePartie()));
+    }
+
+    static Executeur rejouer(String partie) {
+        LecteurDeParties lecteur = new LecteurDeParties(Scenario.lire(partie));
+        return lecteur.rejouer(lecteur.nouvellePartie());
     }
 
     @Test
-    void etape1LEntrainementEstConforme() {
-        assertEquals("conforme : bleus", jugement(ENTRAINEMENT));
+    void etape1LEntrainementEstGagneParLesBleus() {
+        assertEquals("bleus (annoncé : bleus)", bilan(ENTRAINEMENT));
     }
 
     @Test
-    void etape1LaCopieFautiveEstJugeeSurSonPremierEchec() {
-        assertEquals("non conforme : instruction 18 (rouges tacle f2-e2) : coup refusé",
-                jugement(LecteurDeParties.charger("entrainement-recopiee")),
+    void etape1LaCopieFautiveSignaleSonPremierEchec() {
+        assertEquals("pas finie (annoncé : bleus)\n  17 échecs, le premier : instruction 18 (rouges tacle f2-e2) : coup refusé",
+                bilan(LecteurDeParties.charger("entrainement-recopiee")),
                 "une seule faute de recopie : le premier échec la désigne, les suivants en découlent");
     }
 
     @Test
-    void etape1LeVerdictCompareAuResultatAnnonce() {
+    void etape1LeResultatSeLitSurLaPartieRejouee() {
         String attaque = """
                 départ officiel
                 bleus poussée c5-d4
@@ -39,10 +45,9 @@ class LecteurDePartiesTest {
                 rouges déplacement c3-c4
                 bleus poussée e3-f2
                 """;
-        assertEquals("non conforme : bleus, l'en-tête annonce rouges",
-                jugement(new LecteurDeParties(Scenario.lire("[Résultat \"rouges\"]\n" + attaque))));
-        assertEquals("non conforme : la partie n'est pas finie",
-                jugement(new LecteurDeParties(Scenario.lire("[Résultat \"bleus\"]\ndépart officiel\nbleus poussée c5-d4"))));
+        assertEquals("bleus", rejouer(attaque).resultat(), "le ballon est en g1 : les Bleus ont marqué");
+        assertEquals("pas finie", rejouer("départ officiel\nbleus poussée c5-d4").resultat(),
+                "un seul coup : personne n'a marqué, et la partie n'est pas nulle");
     }
 
     @Test

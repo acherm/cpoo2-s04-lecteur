@@ -14,7 +14,7 @@ import cpoo2.jeu.Partie;
 import cpoo2.jeu.Position;
 
 /**
- * S04, étape 3 (Q4) : les conditions s'évaluent sur une partie, chaque nœud à sa façon. Tous rouges
+ * S04, étape 3 (Q3) : les conditions s'évaluent sur une partie, chaque nœud à sa façon. Tous rouges
  * sur le squelette.
  */
 class InterpreteurTest {

@@ -6,7 +6,7 @@ import cpoo2.jeu.Partie;
 public record Et(Condition gauche, Condition droite) implements Condition {
 
     @Override public boolean evaluer(Partie partie) {
-        throw new UnsupportedOperationException("TODO S04 Q4");
+        throw new UnsupportedOperationException("TODO S04 Q3");
     }
 
     @Override public String toString() { return gauche + " et " + droite; }

@@ -14,7 +14,7 @@ import cpoo2.jeu.Position;
 
 /**
  * S04, étapes 1 et 2 : jouer les instructions (Q1, {@code accept} et {@link Executeur}), puis les compter
- * (Q3, {@link Statistiques}). L'afficheur est fourni : son test passe dès que {@code accept} est écrit.
+ * (Q2, {@link Statistiques}). L'afficheur est fourni : son test passe dès que {@code accept} est écrit.
  */
 class VisiteursTest {
 

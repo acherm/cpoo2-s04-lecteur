@@ -14,7 +14,7 @@ import cpoo2.scenario.Condition;
 import cpoo2.scenario.Exemples;
 import cpoo2.scenario.Scenario;
 
-/** S04, Q10 : le lecteur sans visiteur, un switch par opération. Tous rouges sur le squelette. */
+/** S04, Q9 : le lecteur sans visiteur, un switch par opération. Tous rouges sur le squelette. */
 class MotifsTest {
 
     static final LecteurParMotifs ENTRAINEMENT = LecteurParMotifs.charger("entrainement");
@@ -42,7 +42,7 @@ class MotifsTest {
     void rejouerSansExecuteur() {
         Partie p = ENTRAINEMENT.nouvellePartie();
         assertEquals(List.of(), ENTRAINEMENT.rejouer(p));
-        assertEquals("conforme : bleus", ENTRAINEMENT.verdict(p, List.of()));
+        assertEquals("bleus (annoncé : bleus)", ENTRAINEMENT.bilan(p, List.of()));
         LecteurParMotifs copie = LecteurParMotifs.charger("entrainement-recopiee");
         List<String> echecs = copie.rejouer(copie.nouvellePartie());
         assertEquals(17, echecs.size(), "une faute de recopie, et tout ce qui suit déraille");
@@ -66,14 +66,14 @@ class MotifsTest {
     }
 
     @Test
-    void lesMemesVerdictsQueLeLecteur() {
+    void lesMemesBilansQueLeLecteur() {
         assertEquals(List.of(
-                "entrainement : conforme : bleus",
-                "entrainement-recopiee : non conforme : instruction 18 (rouges tacle f2-e2) : coup refusé",
-                "patiente : conforme : bleus",
-                "club-voisin : non conforme : instruction 31 (bleus tacle c2-c3) : coup refusé",
-                "eclair : non conforme : la partie n'est pas finie",
-                "sans-touche : non conforme : instruction 4 (rouges poussée e2-f2) : coup refusé"),
-                LecteurParMotifs.verdicts());
+                "entrainement : bleus (annoncé : bleus)",
+                "entrainement-recopiee : pas finie (annoncé : bleus)\n  17 échecs, le premier : instruction 18 (rouges tacle f2-e2) : coup refusé",
+                "patiente : bleus (annoncé : bleus)",
+                "club-voisin : pas finie (annoncé : rouges)\n  9 échecs, le premier : instruction 31 (bleus tacle c2-c3) : coup refusé",
+                "eclair : pas finie (annoncé : nulle)",
+                "sans-touche : pas finie (annoncé : bleus)\n  30 échecs, le premier : instruction 4 (rouges poussée e2-f2) : coup refusé"),
+                LecteurParMotifs.bilans());
     }
 }

@@ -6,7 +6,7 @@ import cpoo2.jeu.Partie;
 
 /**
  * Une condition sur une partie : celle qui suit {@code vérifier} dans un scénario, ou celle que le
- * lecteur de parties cherche ({@code --chercher}). S04, étape 3 (Q4) : chaque nœud sait s'évaluer
+ * lecteur de parties cherche ({@code --chercher}). S04, étape 3 (Q3) : chaque nœud sait s'évaluer
  * sur une partie, telle qu'elle est maintenant.
  *
  * <pre>

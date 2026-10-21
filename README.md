@@ -22,21 +22,21 @@ Tant qu'une question n'est pas écrite, le lecteur l'affiche à sa place :
 
 ```text
 src/main/java/cpoo2/
-  lecteur/LecteurDeParties     ← le lecteur, étape par étape (Q2, Q3, Q5)
+  lecteur/LecteurDeParties     ← le lecteur : rejouer (fourni), puis Q2, Q4
   scenario/                    ← une partie lue : ses instructions, ses conditions, ses visiteurs
     Deplacer, Pousser, Tacler, Sauter, Verifier ← Q1 : accept
-    Executeur                  ← Q1 : rejouer
-    Statistiques               ← Q3 : résumer, sans jouer
-    BallonEn, TraitAux, Vainqueur, Et, Non ← Q4 : les conditions s'évaluent
-    Afficheur                  ← fourni : le modèle des Q1 et Q3
+    Executeur                  ← Q1 : rejouer, puis le résultat
+    Statistiques               ← Q2 : résumer, sans jouer
+    BallonEn, TraitAux, Vainqueur, Et, Non ← Q3 : les conditions s'évaluent
+    Afficheur                  ← fourni : le modèle des Q1 et Q2
     Scenario, Instruction, Condition, VisiteurDeScenario, Exemples ← fournis
-    SurchargeDemo              ← à exécuter (Q8)
-  motifs/LecteurParMotifs      ← Q10 : le même lecteur, sans visiteur
+    SurchargeDemo              ← à exécuter (Q7)
+  motifs/LecteurParMotifs      ← Q9 : le même lecteur, sans visiteur
   jeu/                         ← fourni : la partie, son plateau, ses coups
 src/main/resources/parties/    ← six parties enregistrées, et premiere-attaque, qui se vérifie elle-même (vérifier …)
 lib/                           ← l'arbitre du ChessBall de la boîte, compilé : Maven le trouve seul
-rendus/s04-lecteur.puml        ← Q6 : le point de départ de votre diagramme (PlantUML Studio)
-rendus/s04.md                  ← vos réponses (Q6 à Q11), à compléter pour le rendu
+rendus/s04-lecteur.puml        ← Q5 : le point de départ de votre diagramme (PlantUML Studio)
+rendus/s04.md                  ← vos réponses (Q5 à Q10), à compléter pour le rendu
 ```
 
 ## Les tests
@@ -44,16 +44,16 @@ rendus/s04.md                  ← vos réponses (Q6 à Q11), à compléter pour
 | Suite | Questions | Tests | Rouges au départ |
 |---|---|---|---|
 | `cpoo2.scenario.ScenarioTest` | fourni | 5 | 0 |
-| `cpoo2.scenario.VisiteursTest` | Q1, Q3 | 5 | 5 |
-| `cpoo2.scenario.InterpreteurTest` | Q4 (et Q1) | 5 | 5 |
-| `cpoo2.lecteur.LecteurDePartiesTest` | Q2, Q3, Q5 | 5 | 5 |
-| `cpoo2.motifs.MotifsTest` | Q10 | 5 | 5 |
+| `cpoo2.scenario.VisiteursTest` | Q1, Q2 | 5 | 5 |
+| `cpoo2.scenario.InterpreteurTest` | Q3 (et Q1) | 5 | 5 |
+| `cpoo2.lecteur.LecteurDePartiesTest` | Q1, Q2, Q4 | 5 | 5 |
+| `cpoo2.motifs.MotifsTest` | Q9 | 5 | 5 |
 
 ```bash
 mvn test -Dtest=VisiteursTest                          # une seule suite
 mvn test -Dmaven.test.failure.ignore=true              # rouge, mais le tableau complet
-mvn -q compile exec:java -Dexec.mainClass=cpoo2.motifs.LecteurParMotifs   # Q10
-java -cp target/classes cpoo2.scenario.SurchargeDemo                     # Q8
+mvn -q compile exec:java -Dexec.mainClass=cpoo2.motifs.LecteurParMotifs   # Q9
+java -cp target/classes cpoo2.scenario.SurchargeDemo                     # Q7
 ```
 
 ## Le rendu

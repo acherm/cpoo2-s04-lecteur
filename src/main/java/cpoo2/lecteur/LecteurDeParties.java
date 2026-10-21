@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import cpoo2.jeu.Couleur;
 import cpoo2.jeu.Partie;
 import cpoo2.scenario.Condition;
 import cpoo2.scenario.Executeur;
@@ -15,8 +14,8 @@ import cpoo2.scenario.Scenario;
 import cpoo2.scenario.Statistiques;
 
 /**
- * Le lecteur de parties de la séance 4, que vous écrivez étape par étape (Q2, Q3, Q5). Il lit une
- * partie enregistrée, la rejoue, la juge contre son en-tête, la résume, et y cherche des positions.
+ * Le lecteur de parties de la séance 4, que vous complétez étape par étape (Q2, Q4). Il lit une
+ * partie enregistrée, la rejoue et en donne le résultat, la résume, et y cherche des positions.
  *
  * <pre>
  * mvn -q compile exec:java
@@ -49,10 +48,10 @@ public final class LecteurDeParties {
                 + e.getOrDefault("Bleus", "?") + " (bleus) contre " + e.getOrDefault("Rouges", "?") + " (rouges)";
     }
 
-    /** Q3 : « 41 demi-coups : 24 déplacements, 9 poussées, 3 tacles, 5 sauts », sans rien jouer. */
+    /** Q2 : « 41 demi-coups : 24 déplacements, 9 poussées, 3 tacles, 5 sauts », sans rien jouer. */
     public String resume() {
-        // TODO S04 Q3 : une Statistiques, fichier.parcourir(statistiques), puis la phrase
-        throw new UnsupportedOperationException("TODO S04 Q3");
+        // TODO S04 Q2 : une Statistiques, fichier.parcourir(statistiques), puis la phrase
+        throw new UnsupportedOperationException("TODO S04 Q2");
     }
 
     /** Fourni : une partie neuve, à la position de départ du fichier. */
@@ -60,31 +59,47 @@ public final class LecteurDeParties {
         return new Partie(fichier.depart(), fichier.trait());
     }
 
-    /** Q2 : joue chaque instruction du fichier sur cette partie, et rend l'exécuteur, qui garde les échecs. */
-    public Executeur rejouer(Partie sur) {
-        // TODO S04 Q2 : un Executeur sur la partie « sur », fichier.parcourir(executeur), et le rendre
-        throw new UnsupportedOperationException("TODO S04 Q2");
-    }
-
     /**
-     * Q2 : le jugement de la partie rejouée. « conforme : bleus », ou « non conforme : » suivi du
-     * premier échec, de « la partie n'est pas finie », ou de « rouges, l'en-tête annonce bleus ».
+     * Fourni : rejoue toutes les lignes du fichier sur cette partie. Un Executeur passe sur chaque
+     * ligne (fichier.parcourir), puis on le rend : il garde la partie rejouée, son résultat et ses
+     * échecs. C'est le modèle du résumé (Q2) : un objet, un parcours, puis on lui demande ce qu'il a vu.
      */
-    public String verdict(Executeur executeur) {
-        // TODO S04 Q2 : trois cas, dans l'ordre du sujet
-        throw new UnsupportedOperationException("TODO S04 Q2");
-    }
-
-    /** Q5 : les numéros des instructions après lesquelles la condition est vraie. */
-    public List<Integer> chercher(String texte) {
-        // TODO S04 Q5 : la condition lue, une partie neuve et son Executeur, puis, instruction après
-        // instruction : accept(executeur), et si la condition est vraie, noter le numéro
-        throw new UnsupportedOperationException("TODO S04 Q5");
+    public Executeur rejouer(Partie sur) {
+        Executeur executeur = new Executeur(sur);
+        fichier.parcourir(executeur);
+        return executeur;
     }
 
     /**
-     * Fourni : le lecteur au travail. La présentation, le résumé (Q3), la partie rejouée avec son plateau
-     * final et son verdict (Q2), puis ce qu'on y cherche (Q5). Chaque morceau s'affiche dès que sa question
+     * Fourni : « bleus (annoncé : bleus) », le résultat de la partie rejouée (Q1) et celui
+     * qu'annonce l'en-tête, puis, s'il y en a, le nombre d'échecs et le premier, le seul qui désigne
+     * la faute (les suivants en découlent).
+     */
+    public String bilan(Executeur executeur) {
+        return bilan(executeur.resultat(), fichier.entete().getOrDefault("Résultat", "?"), executeur.echecs());
+    }
+
+    /** Fourni : la mise en forme du bilan, commune à ce lecteur et à celui de la Q9. */
+    public static String bilan(String resultat, String annonce, List<String> echecs) {
+        String bilan = resultat + " (annoncé : " + annonce + ")";
+        if (echecs.size() == 1) {
+            bilan += "\n  1 échec : " + echecs.get(0);
+        } else if (echecs.size() > 1) {
+            bilan += "\n  " + echecs.size() + " échecs, le premier : " + echecs.get(0);
+        }
+        return bilan;
+    }
+
+    /** Q4 : les numéros des instructions après lesquelles la condition est vraie. */
+    public List<Integer> chercher(String texte) {
+        // TODO S04 Q4 : la condition lue, une partie neuve et son Executeur, puis, instruction après
+        // instruction : accept(executeur), et si la condition est vraie, noter le numéro
+        throw new UnsupportedOperationException("TODO S04 Q4");
+    }
+
+    /**
+     * Fourni : le lecteur au travail. La présentation, le résumé (Q2), la partie rejouée avec son plateau
+     * final et son bilan (Q1), puis ce qu'on y cherche (Q4). Chaque morceau s'affiche dès que sa question
      * est écrite, et « pas encore écrit » avant : rien à écrire ici.
      */
     public void lire(Optional<String> recherche) {
@@ -93,24 +108,19 @@ public final class LecteurDeParties {
         System.out.println(essayer(() -> {
             Partie p = nouvellePartie();
             Executeur executeur = rejouer(p);
-            return p.plateau().enTexte() + verdict(executeur);
+            return p.plateau().enTexte() + "résultat : " + bilan(executeur);
         }));
         recherche.ifPresent(c -> System.out.println(essayer(() -> "« " + c + " » : après les demi-coups " + chercher(c))));
     }
 
-    /** Fourni : « bleus », « rouges » ou « nulle », comme dans un en-tête. */
-    static String resultat(Partie partie) {
-        return partie.vainqueur().map(c -> c == Couleur.BLEUS ? "bleus" : "rouges").orElse("nulle");
-    }
-
     /**
-     * Fourni : la ligne de commande. Sans argument, le verdict de chaque partie de la boîte. Avec un
+     * Fourni : la ligne de commande. Sans argument, le bilan de chaque partie de la boîte. Avec un
      * nom de partie, sa lecture. {@code --chercher} prend tout ce qui le suit comme condition.
      */
     public static void main(String[] args) {
         if (args.length == 0) {
             for (String nom : PARTIES) {
-                System.out.println(nom + " : " + jugement(nom));
+                System.out.println(nom + " : " + bilanDe(nom));
             }
             return;
         }
@@ -121,10 +131,10 @@ public final class LecteurDeParties {
         charger(args[0]).lire(recherche);
     }
 
-    /** Le verdict d'une partie de la boîte, ou « pas encore écrit » tant que la Q2 ne l'est pas. */
-    private static String jugement(String nom) {
+    /** Le bilan d'une partie de la boîte, ou « pas encore écrit » tant que la Q1 ne l'est pas. */
+    private static String bilanDe(String nom) {
         LecteurDeParties lecteur = charger(nom);
-        return essayer(() -> lecteur.verdict(lecteur.rejouer(lecteur.nouvellePartie())));
+        return essayer(() -> lecteur.bilan(lecteur.rejouer(lecteur.nouvellePartie())));
     }
 
     /** Le texte d'un morceau du lecteur, ou « pas encore écrit (TODO S04 Qn) » tant que sa question ne l'est pas. */

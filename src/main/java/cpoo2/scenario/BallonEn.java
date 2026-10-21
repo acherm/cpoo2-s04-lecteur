@@ -7,7 +7,7 @@ import cpoo2.jeu.Position;
 public record BallonEn(Position cas) implements Condition {
 
     @Override public boolean evaluer(Partie partie) {
-        throw new UnsupportedOperationException("TODO S04 Q4");
+        throw new UnsupportedOperationException("TODO S04 Q3");
     }
 
     @Override public String toString() { return "ballon en " + cas; }

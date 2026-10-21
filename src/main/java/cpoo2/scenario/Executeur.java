@@ -10,7 +10,7 @@ import cpoo2.jeu.Partie;
 /**
  * S04, Q1 : jouer un scénario, ou une partie enregistrée, sur une vraie partie. Un coup est joué
  * s'il est à l'équipe au trait et si la partie l'accepte, une vérification est évaluée (sa
- * condition, Q4). Chaque échec est noté, avec le numéro de l'instruction, et l'exécution continue.
+ * condition, Q3). Chaque échec est noté, avec le numéro de l'instruction, et l'exécution continue.
  */
 public final class Executeur implements VisiteurDeScenario {
 
@@ -33,6 +33,19 @@ public final class Executeur implements VisiteurDeScenario {
 
     /** Les échecs, « instruction 3 (rouges saut c2-c4) : coup refusé ». Vide si tout s'est bien passé. */
     public List<String> echecs() { return List.copyOf(echecs); }
+
+    /**
+     * Le résultat de la partie rejouée : « bleus » ou « rouges » si une équipe a marqué, « nulle » si
+     * la partie s'est finie sans but, « pas finie » sinon. Le lecteur l'appelle une fois toutes les
+     * lignes passées : un visiteur ne sait pas quand le parcours se termine, c'est celui qui a lancé
+     * parcourir qui le sait, et qui lui demande ensuite son résultat (comme Afficheur.texte()).
+     *
+     * <p>TODO S04 Q1 : partie.estTerminee() dit si la partie est finie, partie.vainqueur() qui a
+     * marqué (vide si personne), et Scenario.nom(equipe) donne « bleus » ou « rouges ».</p>
+     */
+    public String resultat() {
+        throw new UnsupportedOperationException("TODO S04 Q1");
+    }
 
     // TODO S04 Q1 : les quatre coups se jouent de la même façon, et confient ce travail à jouer, en
     // une ligne chacun : visiterDeplacer(d) fait jouer(d, d.equipe(), d.enCoup()), et de même pour
