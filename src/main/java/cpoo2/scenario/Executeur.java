@@ -34,8 +34,9 @@ public final class Executeur implements VisiteurDeScenario {
     /** Les échecs, « instruction 3 (rouges saut c2-c4) : coup refusé ». Vide si tout s'est bien passé. */
     public List<String> echecs() { return List.copyOf(echecs); }
 
-    // TODO S04 Q1 : les quatre coups appellent tous jouer(...), une seule ligne chacun :
-    // visiterDeplacer(d) fait jouer(d, d.equipe(), d.enCoup()), et de même pour les trois autres.
+    // TODO S04 Q1 : les quatre coups se jouent de la même façon, et confient ce travail à jouer, en
+    // une ligne chacun : visiterDeplacer(d) fait jouer(d, d.equipe(), d.enCoup()), et de même pour
+    // les trois autres.
 
     @Override public void visiterDeplacer(Deplacer d) { throw new UnsupportedOperationException("TODO S04 Q1"); }
 
@@ -45,19 +46,28 @@ public final class Executeur implements VisiteurDeScenario {
 
     @Override public void visiterSauter(Sauter s) { throw new UnsupportedOperationException("TODO S04 Q1"); }
 
-    /** TODO S04 Q1 : numero++, puis, si la condition est fausse sur la partie, echec(v, "fausse"). */
+    /**
+     * TODO S04 Q1 : une vérification ne joue rien, elle affirme un fait sur la partie. Elle compte
+     * comme une ligne (numero++), et si sa condition est fausse sur la partie, l'échec « fausse ».
+     */
     @Override public void visiterVerifier(Verifier v) { throw new UnsupportedOperationException("TODO S04 Q1"); }
 
     /**
-     * TODO S04 Q1 : numero++, puis : si ce n'est pas le trait de cette équipe, l'échec
-     * « ce n'est pas aux bleus de jouer » (Scenario.nom(equipe) donne « bleus » ou « rouges ») ;
-     * sinon, si la partie refuse le coup (jouer rend faux), l'échec « coup refusé ».
+     * Le travail commun aux quatre coups. Ce n'est pas une sixième méthode visiter : elle ne regarde
+     * jamais la sorte de la ligne, et ne la reçoit que pour l'écrire dans le message d'échec.
+     *
+     * <p>TODO S04 Q1 : compter la ligne (numero++), puis deux vérifications, dans cet ordre. Un Coup
+     * n'a pas de couleur, la partie le joue pour l'équipe au trait : si la ligne annonce l'autre
+     * équipe, l'échec « ce n'est pas aux bleus de jouer » (Scenario.nom(equipe) donne « bleus » ou
+     * « rouges »). Sinon, si les règles refusent le coup (partie.jouer rend faux), l'échec
+     * « coup refusé ».</p>
      */
-    private void jouer(Instruction i, Couleur equipe, Coup coup) {
+    private void jouer(Instruction ligne, Couleur equipe, Coup coup) {
         throw new UnsupportedOperationException("TODO S04 Q1");
     }
 
-    private void echec(Instruction i, String pourquoi) {
-        echecs.add("instruction " + numero + " (" + i + ") : " + pourquoi);
+    /** Fourni : note l'échec de la ligne en cours, « instruction 18 (rouges tacle f2-e2) : coup refusé ». */
+    private void echec(Instruction ligne, String pourquoi) {
+        echecs.add("instruction " + numero + " (" + ligne + ") : " + pourquoi);
     }
 }
