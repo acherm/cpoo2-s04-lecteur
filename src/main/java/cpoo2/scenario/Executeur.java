@@ -53,14 +53,15 @@ public final class Executeur implements VisiteurDeScenario {
     @Override public void visiterVerifier(Verifier v) { throw new UnsupportedOperationException("TODO S04 Q1"); }
 
     /**
-     * Le travail commun aux quatre coups. Ce n'est pas une sixième méthode visiter : elle ne regarde
+     * Fait jouer le coup par la partie : c'est partie.jouer(coup) qui le joue, la Partie connaît les
+     * règles. Le travail commun aux quatre coups, pas une sixième méthode visiter : elle ne regarde
      * jamais la sorte de la ligne, et ne la reçoit que pour l'écrire dans le message d'échec.
      *
-     * <p>TODO S04 Q1 : compter la ligne (numero++), puis deux vérifications, dans cet ordre. Un Coup
-     * n'a pas de couleur, la partie le joue pour l'équipe au trait : si la ligne annonce l'autre
-     * équipe, l'échec « ce n'est pas aux bleus de jouer » (Scenario.nom(equipe) donne « bleus » ou
-     * « rouges »). Sinon, si les règles refusent le coup (partie.jouer rend faux), l'échec
-     * « coup refusé ».</p>
+     * <p>TODO S04 Q1 : compter la ligne (numero++). Puis, avant de jouer, vérifier l'équipe : un Coup
+     * n'a pas de couleur, la partie le joue pour l'équipe au trait. Si la ligne annonce l'autre
+     * équipe, ne pas jouer, et l'échec « ce n'est pas aux bleus de jouer » (Scenario.nom(equipe)
+     * donne « bleus » ou « rouges »). Sinon, jouer : partie.jouer(coup), et s'il rend faux (coup
+     * interdit), l'échec « coup refusé ».</p>
      */
     private void jouer(Instruction ligne, Couleur equipe, Coup coup) {
         throw new UnsupportedOperationException("TODO S04 Q1");
